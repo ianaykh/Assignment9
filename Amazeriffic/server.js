@@ -21,14 +21,20 @@ var ToDoSchema = mongoose.Schema({
 var ToDo = mongoose.model("ToDo", ToDoSchema);
 
 // http.createServer(app).listen(3000);
-var server = http.createServer(app,function(req,res){
-    console.log("server has started");
+var server = http.createServer(app, function(req, res) {
+    console.log("Server has started");
 });
 var io = socket(server);
-io.on("connection", function() {
+io.on("connection", function(socket) {
     console.log("Connected");
 });
-server.listen(3000);
+
+
+
+
+server.listen(3000, function() {
+    console.log("server listening on 3000");
+});
 
 
 
@@ -57,6 +63,7 @@ app.post("/todos", function(req, res) {
                     // the element did not get saved!
                     res.send("ERROR");
                 }
+
                 res.json(result);
             });
         }
