@@ -16,8 +16,16 @@ var main = function(toDoObjects) {
                 $input,
                 $button,
                 i;
+            //  Sliding effect for tabs 
+            if ($(".content").is(":hidden")) {
+                $(".content").slideDown("slow");
+            } else {
+                $(".content").hide();
+            }
+
 
             $(".tabs a span").removeClass("active");
+
             $element.addClass("active");
             $("main .content").empty();
 
@@ -43,6 +51,7 @@ var main = function(toDoObjects) {
                     });
                 });
                 console.log(tags);
+
 
                 var tagObjects = tags.map(function(tag) {
                     var toDosWithTag = [];
@@ -126,4 +135,5 @@ $(document).ready(function() {
     $.getJSON("todos.json", function(toDoObjects) {
         main(toDoObjects);
     });
+
 });
